@@ -1,0 +1,510 @@
+openapi: 3.0.3
+info:
+  title: Swagger Butterfly critique - API
+  description: |-
+    Butterfly critique is an API designed for butterfly enthusiasts. So far, it's an [`express`](https://expressjs.com/)-based API that stores butterflies and users.
+
+    Data persistence is through a JSON-powered database called [`lowdb`](https://github.com/typicode/lowdb).
+
+    Validation is built using an assertion library called [`@mapbox/fusspot`](https://github.com/mapbox/fusspo).
+    
+    `Task`: Butterfly critique is already a pretty great API, but we think it would be even better if it let user critique butterflies. Your task is to create new API endpoints that:
+
+    `I. Allow a user to rate butterflies on a scale of 0 through 5`
+      
+    `II. Allow retrieval of a list of a user's rated butterflies, sorted by rating:`
+    
+    You should also provide a small **write-up** that explains the decisions (for instance, the HTTP verbs for new endpoints) and trade-offs you made. If you add any new dependencies, spend some time talking about why you chose them.
+    
+    You are free to refactor or improve any code you think should be refactored, but please include a note about such changes in your write-up. Any changes you make should be scoped and explained as though you are opening a pull request against an existing codebase used in a production API service.
+
+    
+    View Swagger File:
+    
+    `This document can be imported into or viewed using the Swagger Web Editor at (https://editor-next.swagger.io/)`
+
+
+  contact:
+    email: irq.syed@outlook.com
+  version: 1.0.0
+  
+servers:
+  - url: http://localhost:8000/
+tags:
+  - name: Butterfly Critique
+    description: API designed for butterfly enthusiasts
+  - name: butterfly
+    description: Butterfly Data
+  - name: user
+    description: User Data
+  - name: rating
+    description: Butterfly Rating Data
+paths:
+  /v1/butterfly/command/createButterfly:
+    post:
+      tags:
+        - butterfly
+      summary: Create or Add a new butterfly
+      description: Create or Add a new butterfly to the Database
+      operationId: addButterfly
+      requestBody:
+        description: Creating a new butterfly
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Butterfly'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Butterfly'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Butterfly'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateButterfly'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateButterfly'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'
+            
+      security:
+        - api_key: []
+        
+  /v1/butterfly/query/butterflyById/:butterflyById:
+    get:
+      tags:
+        - butterfly
+      summary: Retrieve Butterfly Information by Butterfly Id
+      description: Retrieve Butterfly Information by Butterfly Id
+      operationId: butterflyById
+      parameters:
+        - name: butterflyId
+          in: query
+          description: Status values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: GI9_EuH8s1
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetButterfly'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetButterfly'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'
+      security:
+        - api_key: []
+  
+  /v1/user/command/createUser:
+    post:
+      tags:
+        - user
+      summary: Create or Add a new user
+      description: Create or Add a new user
+      operationId: addUser
+      requestBody:
+        description: Create a new user in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateUser'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateUser'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'
+      security:
+        - api_key: []
+  /v1/user/query/userById/:userById:
+    get:
+      tags:
+        - user
+      summary: Retrieve user Information by user Id
+      description: Retrieve user Information by user Id
+      operationId: userById
+      parameters:
+        - name: userId
+          in: query
+          description: Status values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: OOWzUaHLsK
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUser'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/GetUser'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'
+      security:
+        - api_key: []
+        
+  /v1/rating/command/createRating:
+    post:
+      tags:
+        - rating
+      summary: Create or Add a new butterfly rating
+      description: Create or Add a new butterfly rating
+      operationId: addrating
+      requestBody:
+        description: Create butterfly rating in the database
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateButterfly'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/RateButterfly'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RateButterfly'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRating'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CreateRating'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'
+      security:
+        - api_key: []
+  /v1/rating/query/userById/:userById:
+    get:
+      tags:
+        - rating
+      summary: Retrieve Butterfly rating by user Id
+      description: Get rating Information by Id
+      operationId: butterflyRatings
+      parameters:
+        - name: userId
+          in: query
+          description: Status values that need to be considered for filter
+          required: false
+          explode: true
+          schema:
+            type: string
+            default: OOWzUaHLsK
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ListButterflyRatings'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ListButterflyRatings'
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNoRatingResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserNoRatingResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ServerErrorResponse'
+      security:
+        - api_key: []
+
+components:
+  schemas:
+    Butterfly:
+      required:
+        - butterflyId
+      type: object
+      properties:
+        butterflyId:
+          type: string
+          example: "GI9_EuH8s1"
+        commonName:
+          type: string
+          example: "Zebra Swallowtail"
+        species:
+          type: string
+          example: "Protographium marcellus"
+        article:
+          type: string
+          example: "https://en.wikipedia.org/wiki/Protographium_marcellus"
+      xml:
+        name: pet
+    CreateButterfly:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Request processed successfully."
+        data:
+          type: object
+          properties:
+            butterflyId:
+              type: string
+              example: "GI9_EuH8s1"
+    GetButterfly:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            butterflyId:
+              type: string
+              example: "GI9_EuH8s1"
+            commonName:
+              type: string
+              example: "Zebra Swallowtail"
+            species:
+              type: string
+              example: "Protographium marcellus"
+            article:
+              type: string
+              example: "https://en.wikipedia.org/wiki/Protographium_marcellus"
+    User:
+      required:
+        - userName
+      type: object
+      properties:
+        userName:
+          type: string
+          example: "iluvbutterflies"
+    GetUser:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              example: "OOWzUaHLsK"
+            userName:
+              type: string
+              example: "iluvbutterflies"
+    CreateUser:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Request processed successfully"
+        data:
+          type: object
+          properties:
+            userId:
+              type: string
+              example: "OOWzUaHLsK"
+    CreateRating:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Request processed successfully"
+        data:
+          type: object
+          properties:
+            userRating:
+              type: string
+              example: "1"
+            butterflyId:
+              type: string
+              example: "GI9_EuH8s1"
+    RateButterfly:
+      required:
+        - userId
+        - userRating
+        - butterflyId
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "OOWzUaHLsK"
+        userRating:
+          type: string
+          example: "1"
+        butterflyId:
+          type: string
+          example: "GI9_EuH8s1"
+    ListButterflyRatings:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: "OOWzUaHLsK"
+        butterflyId:
+          type: string
+          example: "GI9_EuH8s1"
+        userRating:
+          type: string
+          example: "1"
+    SuccessResponse:
+      type: object
+      properties:
+        Message:
+          type: string
+          example: "Request processed successfully"
+      xml:
+        name: '##default'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Invalid Request"
+      xml:
+        name: '##default'
+    UserNoRatingResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "User has not rated any butterflies"
+      xml:
+        name: '##default'
+    ServerErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "An unexpected error occurred on the server"
+      xml:
+        name: '##default'
+  requestBodies:
+    Butterfly:
+      description: Butterfly object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Butterfly'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Butterfly'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

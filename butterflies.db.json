@@ -1,0 +1,96 @@
+{
+  "butterflies": [
+    {
+      "butterflyId": "GI9_EuH8s1",
+      "commonName": "Zebra Swallowtail",
+      "species": "Protographium marcellus",
+      "article": "https://en.wikipedia.org/wiki/Protographium_marcellus"
+    },
+    {
+      "butterflyId": "xRKSdjkBt4",
+      "commonName": "Plum Judy",
+      "species": "Abisara echerius",
+      "article": "https://en.wikipedia.org/wiki/Abisara_echerius"
+    },
+    {
+      "butterflyId": "0MUBKMu07U",
+      "commonName": "Red Pierrot",
+      "species": "Talicada nyseus",
+      "article": "https://en.wikipedia.org/wiki/Talicada_nyseus"
+    },
+    {
+      "butterflyId": "NLktii5zvK",
+      "commonName": "Texan Crescentspot",
+      "species": "Anthanassa texana",
+      "article": "https://en.wikipedia.org/wiki/Anthanassa_texana"
+    },
+    {
+      "butterflyId": "SMyaT24g-N",
+      "commonName": "Guava Skipper",
+      "species": "Phocides polybius",
+      "article": "https://en.wikipedia.org/wiki/Phocides_polybius"
+    },
+    {
+      "butterflyId": "DCenP4kQNQ",
+      "commonName": "Mexican Bluewing",
+      "species": "Myscelia ethusa",
+      "article": "https://en.wikipedia.org/wiki/Myscelia_ethusa"
+    },
+    {
+      "butterflyId": "0rg7CgWuf",
+      "commonName": "Question Mark",
+      "species": "Polygonia interrogationis",
+      "article": "https://www.butterfliesandmoths.org/"
+    },
+    {
+      "butterflyId": "QHaMhMFjX",
+      "commonName": "Question Mark",
+      "species": "Polygonia interrogationis",
+      "article": "https://www.butterfliesandmoths.org/"
+    }
+  ],
+  "users": [
+    {
+      "userId": "OOWzUaHLsK",
+      "username": "iluvbutterflies"
+    },
+    {
+      "userId": "OOOWzUaHLsK",
+      "username": "iluvbutterflies"
+    },
+    {
+      "userId": "sdmU7-wkQX",
+      "username": "flutterby"
+    },
+    {
+      "userId": "aqekk3t4kw",
+      "username": "metamorphosize_me"
+    },
+    {
+      "userId": "nZKJg23pq",
+      "username": "Mark Will"
+    }
+  ],
+  "userRatings": [
+    {
+      "userId": "OOWzUaHLsK",
+      "butterflyId": "xRKSdjkBt4",
+      "userRating": "3"
+    },
+    {
+      "userId": "OOWzUaHLsK",
+      "butterflyId": "GI9_EuH8s1",
+      "userRating": "4"
+    },
+    {
+      "userId": "sdmU7-wkQX",
+      "butterflyId": "GI9_EuH8s1",
+      "userRating": "2"
+    },
+    {
+      "userId": "aqekk3t4kw",
+      "butterflyId": "xRKSdjkBt4",
+      "userRating": "5"
+    }
+  ]
+}
